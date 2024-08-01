@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
-"""
-Module with a type-annotated function make_multiplier.
-"""
 
 
-from typing import Callable
+'''A python module that which takes a list mxd_lst of integers
+   and floats and returns their sum as a float.
+'''
 
 
-def make_multiplier(multiplier: float) -> Callable[[float], float]:
-    """
-    Return a function that multiplies a float by the given multiplier.
-    """
-    def multiplier_function(x: float) -> float:
-        return x * multiplier
-    return multiplier_function
+from typing import List, Union
 
+
+def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:
+    '''a type_annotated function that returns float sum of mxd_lst'''
+
+    total = 0.00
+    for i in mxd_lst:
+        total += i
+    return total
+
+
+if __name__ == '__main__':
+    print(sum_mixed_list.__annotations__)
+    mixed = [5, 4, 3.14, 666, 0.99]
+    ans = sum_mixed_list(mixed)
+    print(ans == sum(mixed))
+    print("sum_mixed_list(mixed) returns {} which is a {}"
+          .format(ans, type(ans)))
